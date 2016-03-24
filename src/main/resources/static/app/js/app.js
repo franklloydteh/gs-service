@@ -2,6 +2,7 @@ define([
     'jquery',
     'angular',
     'angularRoute',
+    'angularUIBootstrap',
     'module/greetings'
 ], function ($, angular) {
 
