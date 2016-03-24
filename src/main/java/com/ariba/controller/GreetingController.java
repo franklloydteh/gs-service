@@ -26,7 +26,8 @@ public class GreetingController {
     private GreetingRepo greetingRepo;
 
     @RequestMapping(value = "/hello/{id}", method = GET)
-    public GreetingDto get(@PathVariable Long id) {
+    public GreetingDto get(@PathVariable Long id) throws InterruptedException {
+        Thread.sleep(5000);
         Greeting greeting = greetingRepo.findOne(id);
         GreetingDto dto = new GreetingDto();
         BeanUtils.copyProperties(greeting, dto);
@@ -34,12 +35,13 @@ public class GreetingController {
     }
 
     @RequestMapping(value = "/hello", method = GET)
-    public List<GreetingListDto> list() {
+    public List<GreetingListDto> list() throws InterruptedException {
+        Thread.sleep(5000);
         List<GreetingListDto> dtos = new ArrayList<>();
         List<Greeting> greetings = greetingRepo.findAll();
         for (Greeting greeting : greetings) {
             GreetingListDto dto = new GreetingListDto();
-            BeanUtils.copyProperties(greeting,dto);
+            BeanUtils.copyProperties(greeting, dto);
             dtos.add(dto);
         }
         return dtos;
@@ -47,7 +49,7 @@ public class GreetingController {
 
     @RequestMapping(value = "/hello", method = POST)
     public GreetingDto save(@RequestBody GreetingDto dto) {
-        Greeting greeting = new Greeting();
+        Greeting greeting = dto.getId() == null ? new Greeting() : greetingRepo.findOne(dto.getId());
 
         BeanUtils.copyProperties(dto, greeting, "password", "excludeMeToo");
         Greeting saved = greetingRepo.save(greeting);
