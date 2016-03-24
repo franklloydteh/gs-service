@@ -6,6 +6,7 @@ import com.ariba.model.Envelope;
 import com.ariba.model.Greeting;
 import com.ariba.repo.EnvelopeRepo;
 import com.ariba.repo.GreetingRepo;
+import com.ariba.service.ComputeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,9 @@ public class GreetingController {
     @Resource(name = "envelopeRepo")
     private EnvelopeRepo envelopeRepo;
 
+    @Resource(name = "computeService")
+    private ComputeService computeService;
+
     @RequestMapping(value = "/hello/{id}", method = GET)
     public GreetingDto get(@PathVariable Long id) throws InterruptedException {
         Thread.sleep(5000);
@@ -49,6 +53,10 @@ public class GreetingController {
             BeanUtils.copyProperties(greeting, dto);
             dtos.add(dto);
         }
+
+        Integer result = computeService.add(1, 3);
+        System.out.println("Computing: " + result);
+
         return dtos;
     }
 
