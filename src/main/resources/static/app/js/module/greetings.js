@@ -41,7 +41,7 @@ define([
                 });
         }])
         .controller('GreetingSaveCtrl', ['$scope', '$location', '$routeParams', 'GreetingResource', 'greeting',
-            function ($scope, $location, $routeParams, GreetingResource, greeting) {
+            function (a, $location, $routeParams, GreetingResource, greeting) {
                 $scope.greeting = greeting;
                 $scope.saveGreeting = function () {
                     GreetingResource.save($scope.greeting, function (data) {
