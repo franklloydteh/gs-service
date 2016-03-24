@@ -36,7 +36,7 @@ public class GreetingController {
 
     @RequestMapping(value = "/hello", method = GET)
     public List<GreetingListDto> list() throws InterruptedException {
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         List<GreetingListDto> dtos = new ArrayList<>();
         List<Greeting> greetings = greetingRepo.findAll();
         for (Greeting greeting : greetings) {
