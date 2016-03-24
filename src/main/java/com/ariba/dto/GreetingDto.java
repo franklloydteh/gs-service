@@ -8,6 +8,7 @@ public class GreetingDto {
     private Long id;
     private String title;
     private String content;
+    private Long envelopeId;
 
     public GreetingDto() {
     }
@@ -16,6 +17,14 @@ public class GreetingDto {
         this.id = id;
         this.content = content;
         this.title = title;
+    }
+
+    public Long getEnvelopeId() {
+        return envelopeId;
+    }
+
+    public void setEnvelopeId(Long envelopeId) {
+        this.envelopeId = envelopeId;
     }
 
     public Long getId() {

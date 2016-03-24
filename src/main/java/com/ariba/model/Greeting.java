@@ -3,13 +3,12 @@ package com.ariba.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 
 /**
  * @author Frank Lloyd Teh
  */
 @Entity
-@Table(name = "app_user")
 public class Greeting {
 
     @Id
@@ -18,6 +17,17 @@ public class Greeting {
 
     private String title;
     private String content;
+
+    @ManyToOne
+    private Envelope envelope;
+
+    public Envelope getEnvelope() {
+        return envelope;
+    }
+
+    public void setEnvelope(Envelope envelope) {
+        this.envelope = envelope;
+    }
 
     public Long getId() {
         return id;
